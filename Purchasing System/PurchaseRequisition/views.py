@@ -50,8 +50,7 @@ def purchaserequisitionconfirmation(request):
 
     q = QueryDict(responses)
 
-    items_id = q.getlist('item_id')
-    print(items_id)
+    items_id = []
     items_name = q.getlist('item_name')
     print(items_name)
     description = q.getlist('description')
@@ -62,6 +61,10 @@ def purchaserequisitionconfirmation(request):
     print(unit_price)
     total_price = q.getlist('total_price')
     print(total_price)
+
+    for i in range(len(items_name)):
+        items_id.append(random.randint(10000,99999))
+    print(items_id)
 
     items = list()
 
