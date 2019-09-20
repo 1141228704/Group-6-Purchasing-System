@@ -21,17 +21,29 @@
                     <td>{{r.person_id.person_id}}</td>
                     <td>{{r.vendor_id}}</td>
                     <td>{{r.time_created}}</td>
-                    <td><button type="submit" class="btn btn-info buttonsize1"><a href="purchaseorderform.html">Issue Purchase Order</button></td>
+                    <td>{{r.status}}</td>
+                    
 
 
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <div class="margintop">
+        </form>
+
+           
+               <form class="margintop" action='purchaseorderform' method='GET'>
+                   <div class="marginleft">
+        <button type="submit" class="btn btn-info">Issue Purchase Order</button><br />
+                       </div>
+    </form>
+        
+  <form action="quotationhistorydetails" >
+        <div class="marginright">
             <a type="submit" class="btn btn-info" href="/menu">Back</a>
         </div>
     </form>
+
 
 </div>
 
