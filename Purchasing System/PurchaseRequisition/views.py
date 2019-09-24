@@ -51,8 +51,7 @@ def purchaserequisitionconfirmation(request):
 
         q = QueryDict(responses)
 
-        items_id = q.getlist('item_id')
-        print(items_id)
+        items_id = []
         items_name = q.getlist('item_name')
         print(items_name)
         description = q.getlist('description')
@@ -64,6 +63,10 @@ def purchaserequisitionconfirmation(request):
         total_price = q.getlist('total_price')
         print(total_price)
 
+        for i in range(len(items_name)):
+            items_id.append(random.randint(10000,99999))
+        print(items_id)
+        
         items = list()
 
         i = 0
@@ -99,6 +102,7 @@ def purchaserequisitionconfirmation(request):
 
             }
         return render(request,'PurchaseRequisition/purchaserequisitionform.html',context)
+
 
  
 
@@ -199,14 +203,17 @@ def purchaserequisitionhistorydetails(request):
     purchase_requisition = PurchaseRequisition.objects.get(pr_id = pk)
     items = PurchaseRequisitionItem.objects.all().filter(pr_id = pk)
 
-    print(purchase_requisition.person_id)
-    
+    newitems = []
+    for item in items:
+        item.total_price = item.quantity * item.unit_price
+        newitems.append(item)
+
     context = {
 
             'title': 'Purchase Requisition Details',
             'purchase_requisition_id' : pk,
             'staff_id' : purchase_requisition.person_id.person_id,
-            'rows' : items,
+            'rows' : newitems,
             'staff_info' : purchase_requisition.person_id,
             'grand_total': purchase_requisition.total_price,
             'time_created': purchase_requisition.time_created,
@@ -227,4 +234,5 @@ def purchaserequisitionhistory(request):
             'rows':purchase_requisitions
         }
     return render(request,'PurchaseRequisition/purchaserequisitionhistory.html',context)
+
 

@@ -8,7 +8,7 @@
      
       var i=1;
      $("#add_row").click(function(){
-      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='item_id' type='item_id' placeholder='Item ID' class='form-control input-md'   /> </td><td><input  name='item_name' type='text' placeholder='Item Name'  class='form-control input-md'></td><td><input  name='description' type='text' placeholder='Description'  class='form-control input-md' ></td><td><input name='quantity' type='text' placeholder='Quantity' class='form-control input-md'  /> </td><td><input name='unit_price' type='text' placeholder='Price Per Unit' class='form-control input-md'  /> </td>");
+      $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input  name='item_name' type='text' placeholder='Item Name'  class='form-control input-md'></td><td><input  name='description' type='text' placeholder='Description'  class='form-control input-md' ></td><td><input name='quantity' type='text' placeholder='Quantity' class='form-control input-md'  /> </td><td><input name='unit_price' type='text' placeholder='Price Per Unit' class='form-control input-md'  /> </td>");
 
       $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
       i++; 
@@ -45,7 +45,7 @@
 				<thead>
 					<tr >
 						<th class="text-center">#</th>
-						<th class="text-center">Item ID</th>
+
 						<th class="text-center">Item Name</th>
                         <th class="text-center">Description</th>
 						<th class="text-center">Quantity</th>
@@ -55,7 +55,7 @@
 				<tbody name="item_rows">
 					<tr id='addr0'>
 						<td>1</td>
-                        <td> <input type="text" name='item_id' placeholder='Item id'  class="form-control" /> </td>
+
 						<td><input type="text" name="item_name"  placeholder='Item name' class="form-control" ></td>
 						<td><input type="text" name='description' placeholder='Description' class="form-control" /></td>
                         <td><input type="text" name='quantity' placeholder='Quantity'  class="form-control" /></td>
