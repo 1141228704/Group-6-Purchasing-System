@@ -67,14 +67,14 @@ def deliveryorderconfirmation(request):
     do_id = request.POST['delivery_order_id']
     po_id = request.POST['purchase_order_id']
 
-    staff_id = request.user.id
-    staff_info = Person.objects.get(user_id=staff_id)
+    user_id = request.user.id
+    staff = Person.objects.get(user_id=user_id)
     
     vendor_id = request.POST['vendor_id']
     shipping_inst = request.POST['shipping_inst']
     description = request.POST['description']
 
-    
+    vendor_info = Vendor.objects.get(vendor_id = vendor_id)
     
     responses = request.read()
     print(responses)
@@ -111,48 +111,27 @@ def deliveryorderconfirmation(request):
         items.append(item_table)
         i = i + 1
         grand_total = grand_total + total
+    print(items)
 
 
-    try:
-        vendor_info = Vendor.objects.get(vendor_id = vendor_id)
-
-        context = {
-                'title': 'Delivery Order Confirmation',
-                'purchase_order_id' : po_id,
-                'delivery_order_id' : do_id,
-                'staff_id' : staff_id,
-                'vendor_id' : vendor_id,
-                'shipping_inst' : shipping_inst,
-                'grand_total': grand_total,
-                'rows' : items,
-                'staff_info' : staff_info,
-                'vendor_info' : vendor_info,
-                'description' : description
-            }
 
 
-        return render(request,'DeliveryOrder/deliveryorderconfirmation.html',context)
+    context = {
+            'title': 'Delivery Order Confirmation',
+            'purchase_order_id' : po_id,
+            'delivery_order_id' : do_id,
+            'staff_id' : staff.person_id,
+            'vendor_id' : vendor_id,
+            'shipping_inst' : shipping_inst,
+            'grand_total': grand_total,
+            'rows' : items,
+            'staff_info' : staff,
+            'vendor_info' : vendor_info,
+            'description' : description
+        }
 
-    except Vendor.DoesNotExist: 
 
-        context = {
-                'title': 'Delivery Order Confirmation',
-                'purchase_order_id' : po_id,
-                'delivery_order_id' : do_id,
-                #'staff_id' : staff_id,
-                'vendor_id' : vendor_id,
-                'shipping_inst' : shipping_inst,
-                'grand_total': grand_total,
-                'rows' : items,
-                'staff_info' : staff_info,
-                'description' : description
-            }
-
-        context = { 'error': 'Please fill in all the required information !',
-                    'title': 'Delivery Order Form'
-            }
-        return render(request,'DeliveryOrder/deliveryorderform.html',context)
-
+    return render(request,'DeliveryOrder/deliveryorderconfirmation.html',context)
 
  
 def deliveryorderdetails(request):
