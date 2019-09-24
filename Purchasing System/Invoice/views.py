@@ -62,18 +62,15 @@ def fillinginvoice(request):
         return render(request,'Invoice/invoiceform.html',context)
 
 def invoiceconfirmation(request):
-
     context = {}
     inv_id = request.POST['invoice_id']
     pur_id = request.POST['purchase_order_id']
-    staff_id = request.POST['staff_id']
+    staff_id = request.user.id
     vendor_id = request.POST['vendor_id']
     description = request.POST['description']
     inv_stat = request.POST.get('invoice_status',False)
-    staff_info = Person.objects.get(person_id = staff_id)
-    vendor_info = Vendor.objects.get(vendor_id= vendor_id)
+    staff_info = Person.objects.get(user_id = staff_id)
     responses = request.read()
-    print(responses)
    
     q= QueryDict(responses)
     
@@ -87,7 +84,6 @@ def invoiceconfirmation(request):
     print(items_unit_price)
     items_total_price = q.getlist('total_price')
     print(items_total_price)
-
 
     items = list()
 
@@ -107,12 +103,29 @@ def invoiceconfirmation(request):
         items.append(item_table)
         i = i + 1
         grand_total = grand_total + total
-    print(items)
 
+    try:
+        
+        vendor_info = Vendor.objects.get(vendor_id = vendor_id)
 
+        context = {
+                'title': 'Invoice Confirmation',
+                'purchase_order_id' :pur_id,
+                'invoice_id' : inv_id,
+                'staff_id' : staff_id,
+                'vendor_id' : vendor_id,
+                'grand_total': grand_total,
+                'rows' : items,
+                'staff_info' : staff_info,
+                'vendor_info' : vendor_info,
+                'description' : description
+            }
 
+        return render(request,'Invoice/invoiceconfirmation.html',context)
 
-    context = {
+    except Vendor.DoesNotExist:
+        context = { 
+            'error': 'Please fill in all the required information!',
             'title': 'Invoice Confirmation',
             'purchase_order_id' :pur_id,
             'invoice_id' : inv_id,
@@ -121,12 +134,10 @@ def invoiceconfirmation(request):
             'grand_total': grand_total,
             'rows' : items,
             'staff_info' : staff_info,
-            'vendor_info' : vendor_info,
             'description' : description
         }
-
-
-    return render(request,'Invoice/invoiceconfirmation.html',context)
+        
+        return render(request,'Invoice/invoiceform.html', context)
 
  
 def invoicedetails(request):
@@ -143,7 +154,7 @@ def invoicedetails(request):
     responses = request.read()
     print(responses)
    
-    q= QueryDict(responses)
+    q = QueryDict(responses)
     
     items_id = q.getlist('item_id')
     print(items_id)
@@ -254,3 +265,4 @@ def invoicehistory(request):
             'rows':invoice
         }
     return render(request,'Invoice/invoicehistory.html',context)
+
