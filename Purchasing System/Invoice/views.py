@@ -29,13 +29,6 @@ def invoiceform(request):
         }
     context['user'] = request.user
 
-    purchase_orders = PurchaseOrder.objects.all()
-
-    context = {
-            'title':'Purchase Order History',
-            'rows1':purchase_orders
-        }
-
     return render(request,'Invoice/invoiceform.html',context)
 
 
@@ -49,15 +42,13 @@ def fillinginvoice(request):
     try: 
         purchase_orders = PurchaseOrder.objects.get(purchase_order_id = pur_id)
         item_list = PurchaseOrderItem.objects.filter(purchase_order_id = pur_id)
-        purchase_orderslist = PurchaseOrder.objects.all()
         context = {
                 'title': 'Invoice Form',
                 'invoice_id': 'INV' + str(inv_id),
                 'purchase_order_id': inv_id, 
                 'staff_id' : purchase_orders.person_id.person_id,
                 'vendor_id': purchase_orders.vendor_id.vendor_id,
-                'rows':item_list,
-                'rows1':purchase_orderslist
+                'rows':item_list
             }
 
         responsesItems = render(request,'Invoice/invoiceform.html',context).content

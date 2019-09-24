@@ -5,12 +5,8 @@
     <form class="quotationfind" action="fillinginvoice" method="get">
 
         <div class="input-group mb-3">
-
-            <select name="pur_id" id="pur_id">
-            {% for r in rows1 %}
-            <option value="{{r.purchase_order_id}}">{{r.purchase_order_id}}</option>
-            {% endfor %}
-            </select>
+            <input type="text" class="form-control" name="pur_id" id="pur_id" placeholder="Purchase Order ID" aria-label="Purchase Order ID"
+                   aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button type="submit" class="btn btn-outline-info btn-hover btn-rounded waves-effect">Find</button>
             </div>
