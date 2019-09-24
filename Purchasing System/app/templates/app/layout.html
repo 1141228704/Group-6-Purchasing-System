@@ -23,6 +23,62 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>
+                        <div class="btn-group dropright">
+                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100px; height: 50px; background-color: inherit; color: lightgray;">
+                            Menu
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                               <form class="margintop" action='purchaserequisitionform' method='GET'>
+                                    <button type="submit" class="btn btn-info" style="width: 100%;">Create Purchase Requisition</button><br />
+                                </form>
+
+                                <form class="margintop" action='purchaserequisitionhistory' method='GET'>
+                                    <button type="submit" class="btn btn-outline-info waves-effect" style="width: 100%;">View Purchase Requisition</button><br />
+                                </form>
+
+                                <form class="margintop" action='requestforquotationform' method='GET'>
+                                    <button type="submit" class="btn btn-info" style="width: 100%;">Create Request For Quotation</button><br />
+                                </form>
+
+                                <form class="margintop" action='requestforquotationhistory' method='GET'>
+                                    <button type="submit" class="btn btn-outline-info waves-effect" style="width: 100%;">View Request For Quotation</button><br />
+                                </form>
+
+                                <form class="margintop" action='quotationform' method='GET'>
+                                    <button type="submit" class="btn btn-info" style="width: 100%;">Record Quotation</button><br />
+                                </form>
+
+                                <form class="margintop" action='quotationhistory' method='GET'>
+                                    <button type="submit" class="btn btn-outline-info waves-effect" style="width: 100%;">View Quotation</button><br />
+                                </form>
+
+                                <form class="margintop" action='purchaseorderform' method='GET'>
+                                    <button type="submit" class="btn btn-info" style="width: 100%;">Issue Purchase Order</button><br />
+                                </form>
+
+                                <form class="margintop" action='purchaseorderhistory' method='GET'>
+                                    <button type="submit" class="btn btn-outline-info waves-effect" style="width: 100%;">View Purchase Order</button><br />
+                                </form>
+
+                                <form class="margintop" action='deliveryorderform' method='GET'>
+                                    <button type="submit" class="btn btn-info" style="width: 100%;">Record Delivery Order</button><br />
+                                </form>
+
+                                <form class="margintop" action='deliveryorderhistory' method='GET'>
+                                    <button type="submit" class="btn btn-outline-info waves-effect" style="width: 100%;">View Delivery Order</button><br />
+                                </form>
+
+                                <form class="margintop" action='invoiceform' method='GET'>
+                                    <button type="submit" class="btn btn-info" style="width: 100%;">Record Invoice</button><br />
+                                </form>
+
+                                <form class="margintop" action='invoicehistory' method='GET'>
+                                    <button type="submit" class="btn btn-outline-info waves-effect" style="width: 100%;">Invoice History</button><br />
+                                </form>
+                          </div>
+                        </div>
+                    </li>
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'menu' %}">Menu</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
