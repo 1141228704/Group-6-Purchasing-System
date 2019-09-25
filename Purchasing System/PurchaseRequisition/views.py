@@ -87,6 +87,16 @@ def purchaserequisitionconfirmation(request):
             i = i + 1
             grand_total = grand_total + total
         print(items)
+
+        context = {
+            'title': 'Purchase Requisition Confirmation',
+            'purchase_requisition_id' : pr_id,
+            'person_id' : person_id,
+            'grand_total': grand_total,
+            'rows' : items,
+  
+        }
+
         return render(request,'PurchaseRequisition/purchaserequisitionconfirmation.html',context)
 
      except:
