@@ -31,6 +31,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <form class="margintop" action='purchaserequisitionform' method='GET'>
+
                                     <button type="submit" class="btn btn-info" style="width: 100%;">Create Purchase Requisition</button><br />
                                 </form>
 
@@ -82,6 +83,7 @@
                     </li>
                     {% endif %}
                     <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'menu' %}">Menu</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
